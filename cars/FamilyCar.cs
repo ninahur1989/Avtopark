@@ -9,6 +9,12 @@ namespace Avtopark
     internal class FamilyCar : Car
     {
         private Random _random = new Random();
+        public FamilyCar()
+        {
+            SummerTier tier = new SummerTier();
+            Tire = tier;
+        }
+
         public override int MaxSpeed { get => 60; }
         public override int Price { get => _random.Next(3000, 8000); }
         public override void Opportunities()

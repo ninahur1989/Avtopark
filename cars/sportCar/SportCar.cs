@@ -8,6 +8,12 @@ namespace Avtopark
 {
     public class SportCar : Car
     {
+        public SportCar()
+        {
+            WinterTire tire = new WinterTire();
+            Tire = tire;
+        }
+
         public override void Opportunities()
         {
             base.Opportunities();

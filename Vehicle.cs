@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Avtopark
 {
-    public abstract class Vehicle : IComparable
+    public abstract class Vehicle : IComparable, ICapacity
     {
         public abstract int MaxSpeed { get; }
         public abstract int Price { get; }
@@ -26,6 +26,16 @@ namespace Avtopark
             {
                 throw new Exception("error");
             }
+        }
+
+        public void CapacityCheck(ICapacity capacity)
+        {
+            capacity.Capacity();
+        }
+
+        public void Capacity()
+        {
+            Console.WriteLine("i can include 1-200 people");
         }
     }
 }

@@ -10,13 +10,9 @@ namespace Avtopark
     {
         public void Run()
         {
-            Vehicle vehicle1 = new Airplane();
-            Vehicle vehicle2 = new Boat();
-            Vehicle vehicle3 = new FamilyCar();
-            Vehicle vehicle4 = new MiddlePriceSportCar();
-            Vehicle vehicle5 = new HighPriceSportCar();
-            Vehicle[] vehicles = new Vehicle[] { vehicle1, vehicle2, vehicle3, vehicle4, vehicle5 };
-            Array.Sort(vehicles);
+            Initialiser initialiser = new Initialiser();
+            Vehicle[] vehicles = initialiser.Initialise();
+            Console.Clear();
 
             while (true)
             {
@@ -31,10 +27,10 @@ namespace Avtopark
                 switch (choise.ToLower())
                 {
                     case "speed":
-                        Choise2(vehicles);
+                        Choise(vehicles, choise);
                         break;
                     case "price":
-                        Choise1(vehicles);
+                        Choise(vehicles, choise);
                         break;
                     case "all":
                         Console.Clear();
@@ -50,7 +46,7 @@ namespace Avtopark
             }
         }
 
-        public void Choise1(Vehicle[] array)
+        public void Choise(Vehicle[] array, string choise)
         {
             int max;
             int min;
@@ -76,49 +72,24 @@ namespace Avtopark
                     continue;
                 }
 
-                for (int i = 0; i < array.Length; i++)
+                if (choise == "price")
                 {
-                    if (array[i].Price > min && array[i].Price < max)
+                    for (int i = 0; i < array.Length; i++)
                     {
-                        Console.WriteLine($"{array[i].GetType().Name} have price : {array[i].Price} and speed: {array[i].MaxSpeed}  \n");
+                        if (array[i].Price > min && array[i].Price < max)
+                        {
+                            Console.WriteLine($"{array[i].GetType().Name} have price : {array[i].Price} and speed: {array[i].MaxSpeed}  \n");
+                        }
                     }
                 }
-
-                break;
-            }
-        }
-
-        public void Choise2(Vehicle[] array)
-        {
-            int max;
-            int min;
-
-            while (true)
-            {
-                Console.WriteLine("write  min value");
-                if (!int.TryParse(Console.ReadLine(), out min))
+                else
                 {
-                    Console.WriteLine("it isnt number!!");
-                    continue;
-                }
-
-                Console.WriteLine("write  max value");
-                if (!int.TryParse(Console.ReadLine(), out max))
-                {
-                    Console.WriteLine("it isnt number!!");
-                    continue;
-                }
-
-                if (max < min)
-                {
-                    continue;
-                }
-
-                for (int i = 0; i < array.Length; i++)
-                {
-                    if (array[i].MaxSpeed > min && array[i].MaxSpeed < max)
+                    for (int i = 0; i < array.Length; i++)
                     {
-                        Console.WriteLine($"{array[i].GetType().Name} have speed : {array[i].MaxSpeed} and price: {array[i].Price} \n ");
+                        if (array[i].MaxSpeed > min && array[i].MaxSpeed < max)
+                        {
+                            Console.WriteLine($"{array[i].GetType().Name} have speed : {array[i].MaxSpeed} and price: {array[i].Price} \n ");
+                        }
                     }
                 }
 
